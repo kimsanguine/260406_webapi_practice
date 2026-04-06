@@ -1,6 +1,17 @@
 # PRD — 공공 Web API 실습 프로젝트
 
-> 버전: v1.0 | 작성일: 2026-04-06 | 작성자: sanguinekim
+> 버전: v1.1 | 작성일: 2026-04-06 | 최종수정: 2026-04-06 | 작성자: sanguinekim
+
+---
+
+## 배포 현황
+
+| 항목 | 내용 |
+|------|------|
+| GitHub | https://github.com/kimsanguine/260406_webapi_practice |
+| Streamlit Cloud | streamlit/app.py, Python 3.11 |
+| API Key 관리 | st.secrets(클라우드) / .env(로컬) 자동 감지, UI 노출 없음 |
+| 버그 수정 | BUG-01~05 전부 수정 완료 |
 
 ---
 
