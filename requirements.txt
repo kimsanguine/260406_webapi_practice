@@ -1,0 +1,5 @@
+requests
+xmltodict
+pytz
+python-dotenv
+streamlit>=1.32.0
