@@ -59,17 +59,16 @@ st.set_page_config(page_title="공공 Web API 실습", page_icon="🌐", layout=
 st.title("🌐 공공 Web API 실습 데모")
 st.caption("우체국 · 기상청 · 에어코리아 공공 API를 직접 호출해보세요.")
 
+# ── API Key 로드 (UI 노출 없음) ──────────────────────────────
+api_key = requests.utils.unquote(_get_env_key())
+
 # ── 사이드바 ─────────────────────────────────────────────────
 with st.sidebar:
     st.header("⚙️ 설정")
-    env_key = _get_env_key()
-    api_key_input = st.text_input("공공데이터포털 API Key", value=env_key, type="password")
-    api_key = requests.utils.unquote(api_key_input) if api_key_input else ""
-
     if api_key:
-        st.success("API Key 로드됨")
+        st.success("API Key ✓ 로드됨")
     else:
-        st.warning(".env 파일에 SERVICE_KEY를 설정하거나 직접 입력하세요.")
+        st.error("API Key 없음 — 서버 환경변수(SERVICE_KEY)를 확인하세요.")
     st.divider()
     st.markdown("**사용 API**\n- 🏣 우체국 주소 검색\n- ⛅ 기상청 초단기실황\n- 🌫️ 에어코리아 대기오염도")
 
