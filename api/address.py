@@ -3,7 +3,7 @@ import requests
 import xmltodict
 
 
-BASE_URL = "http://openapi.epost.go.kr/postal/retrieveNewAdressAreaCdService/retrieveNewAdressAreaCdService/getNewAddressListAreaCd"
+BASE_URL = "http://openapi.epost.go.kr/postal/retrieveNewAdressAreaCdSearchAllService/retrieveNewAdressAreaCdSearchAllService/getNewAddressListAreaCdSearchAll"
 
 
 def search_address(api_key: str, keyword: str, search_type: str = "road") -> dict:
@@ -25,8 +25,10 @@ def search_address(api_key: str, keyword: str, search_type: str = "road") -> dic
     """
     params = {
         "ServiceKey": api_key,
-        "searchSe": search_type,
+        "searchse": search_type,   # SearchAll 서비스는 파라미터명이 소문자
         "srchwrd": keyword,
+        "countperpage": 20,
+        "currentpage": 1,
     }
 
     try:
@@ -48,7 +50,7 @@ def search_address(api_key: str, keyword: str, search_type: str = "road") -> dic
             }
 
         total = int(header.get("totalCount", 0))
-        raw = data["NewAddressListResponse"].get("newAddressListAreaCd", [])
+        raw = data["NewAddressListResponse"].get("newAddressListAreaCdSearchAll", [])
 
         # 결과가 1건이면 dict, 복수건이면 list로 반환됨
         if isinstance(raw, dict):
